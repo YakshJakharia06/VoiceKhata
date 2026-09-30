@@ -141,7 +141,7 @@ export default function OnboardingPage() {
     try {
       setOtpError("");
       const idToken = "demo-demouser@voicekhata.com";
-      console.log("[Auth] Invoking Hackathon Demo Login Bypass...");
+      console.log("[Auth] Invoking Demo Login Bypass...");
       
       const profile = await loginWithFirebaseToken(idToken);
       
@@ -441,7 +441,7 @@ export default function OnboardingPage() {
                     className="w-full max-w-[320px] mt-2 py-3 bg-white/60 backdrop-blur-md hover:bg-white/80 text-slate-600 border border-slate-300/50 font-bold text-[13px] rounded-full flex items-center justify-center gap-2 cursor-pointer transition-colors outline-none shadow-sm"
                   >
                     <Sparkles size={15} className="text-[#4285F4]" />
-                    Hackathon Demo Login
+                    Demo Login
                   </motion.button>
                 </div>
               </motion.div>
