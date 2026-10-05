@@ -2,6 +2,7 @@ const fs = require("fs");
 const { initializeApp, cert, getApps, getApp } = require("firebase-admin/app");
 const { getAuth } = require("firebase-admin/auth");
 const { getFirestore } = require("firebase-admin/firestore");
+const { getDatabase } = require("firebase-admin/database");
 
 let app;
 
@@ -26,10 +27,16 @@ try {
 }
 
 // Compatibility shim so existing code like admin.auth().verifyIdToken(...) keeps working
+
+
 const admin = {
   app,
+  get apps() {
+    return getApps();
+  },
   auth: () => getAuth(app),
   firestore: () => getFirestore(app),
+  database: () => getDatabase(app),
 };
 
 module.exports = admin;
