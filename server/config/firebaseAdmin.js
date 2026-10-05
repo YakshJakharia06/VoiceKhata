@@ -5,6 +5,7 @@ const { getFirestore } = require("firebase-admin/firestore");
 const { getDatabase } = require("firebase-admin/database");
 
 let app;
+let firebaseInitialized = false;
 
 try {
   const credPath =
@@ -20,17 +21,15 @@ try {
         databaseURL: "https://chatapp4r-default-rtdb.firebaseio.com",
       });
 
+  firebaseInitialized = true;
   console.log("✅ Firebase Admin Initialized Successfully");
 } catch (error) {
   console.error("❌ [Firebase Admin] Initialization error:", error.message);
   console.error(error.stack);
 }
 
-// Compatibility shim so existing code like admin.auth().verifyIdToken(...) keeps working
-
-
 const admin = {
-  app,
+  app: () => app,
   get apps() {
     return getApps();
   },
@@ -39,4 +38,4 @@ const admin = {
   database: () => getDatabase(app),
 };
 
-module.exports = admin;
+module.exports = { admin, firebaseInitialized };
