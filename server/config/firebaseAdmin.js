@@ -9,21 +9,25 @@ try {
     throw new Error("GOOGLE_APPLICATION_CREDENTIALS is not set in Environment Variables.");
   }
 
-  // Resolve the path and check if the file exists
   const absolutePath = path.resolve(credPath);
   if (!fs.existsSync(absolutePath)) {
-    throw new Error(`Could not find the Firebase JSON file at: ${absolutePath}. Check your Render Secret Files!`);
+    throw new Error(`Could not find the Firebase JSON file at: ${absolutePath}`);
   }
 
-  // Read the file manually (This replaces Firebase's 'require' method so it works on Render)
   const rawData = fs.readFileSync(absolutePath, 'utf8');
   const serviceAccount = JSON.parse(rawData);
 
-  // Initialize Firebase with BOTH the credentials and your database URL
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://chatapp4r-default-rtdb.firebaseio.com"
-  });
+  // Initialize Firebase safely
+  if (!admin.apps.length) {
+    admin.initializeApp({
+      credential: admin.credential.cert({
+        projectId: serviceAccount.project_id,
+        privateKey: serviceAccount.private_key,
+        clientEmail: serviceAccount.client_email
+      }),
+      databaseURL: "https://chatapp4r-default-rtdb.firebaseio.com"
+    });
+  }
   
   console.log("✅ Firebase Admin Initialized Successfully");
 } catch (error) {
