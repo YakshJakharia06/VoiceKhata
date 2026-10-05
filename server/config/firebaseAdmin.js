@@ -8,18 +8,11 @@ try {
 
   const serviceAccount = JSON.parse(fs.readFileSync(credPath, "utf8"));
 
-  // Safe diagnostics (no secret values printed)
-  console.log("[Firebase Debug] keys:", Object.keys(serviceAccount));
-  console.log("[Firebase Debug] project_id:", serviceAccount.project_id);
-  console.log("[Firebase Debug] client_email:", serviceAccount.client_email);
-  console.log(
-    "[Firebase Debug] private_key ok:",
-    typeof serviceAccount.private_key === "string" &&
-      serviceAccount.private_key.startsWith("-----BEGIN PRIVATE KEY-----") &&
-      serviceAccount.private_key.trim().endsWith("-----END PRIVATE KEY-----")
-  );
+  // getApps() exists in all modern versions; fall back to admin.apps if needed
+  const { getApps } = require("firebase-admin/app");
+  const alreadyInitialized = getApps().length > 0;
 
-  if (!admin.apps.length) {
+  if (!alreadyInitialized) {
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
       databaseURL: "https://chatapp4r-default-rtdb.firebaseio.com",
