@@ -17,19 +17,14 @@ try {
   const rawData = fs.readFileSync(absolutePath, 'utf8');
   const serviceAccount = JSON.parse(rawData);
 
-  // Debug check to see if properties exist
-  console.log("🔍 Checking Firebase credentials file keys...");
-  console.log("Project ID exists:", !!serviceAccount.project_id);
-  console.log("Private Key exists:", !!serviceAccount.private_key);
-  console.log("Client Email exists:", !!serviceAccount.client_email);
+  // Fix escaped newlines in the private key if any exist
+  if (serviceAccount.private_key) {
+    serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+  }
 
   if (!admin.apps.length) {
     admin.initializeApp({
-      credential: admin.credential.cert({
-        projectId: serviceAccount.project_id,
-        privateKey: serviceAccount.private_key,
-        clientEmail: serviceAccount.client_email
-      }),
+      credential: admin.credential.cert(serviceAccount),
       databaseURL: "https://chatapp4r-default-rtdb.firebaseio.com"
     });
   }
