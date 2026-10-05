@@ -17,7 +17,12 @@ try {
   const rawData = fs.readFileSync(absolutePath, 'utf8');
   const serviceAccount = JSON.parse(rawData);
 
-  // Initialize Firebase safely
+  // Debug check to see if properties exist
+  console.log("🔍 Checking Firebase credentials file keys...");
+  console.log("Project ID exists:", !!serviceAccount.project_id);
+  console.log("Private Key exists:", !!serviceAccount.private_key);
+  console.log("Client Email exists:", !!serviceAccount.client_email);
+
   if (!admin.apps.length) {
     admin.initializeApp({
       credential: admin.credential.cert({
