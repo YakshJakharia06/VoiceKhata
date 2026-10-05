@@ -6,8 +6,8 @@ async function check() {
   
   const entries = await mongoose.connection.collection('entries').find().toArray();
   if (entries.length > 0) {
-    console.log("Type of userId:", typeof entries[0].userId, "Constructor:", entries[0].userId.constructor.name);
-    console.log("Type of _id:", typeof entries[0]._id, "Constructor:", entries[0]._id.constructor.name);
+    // console.log("Type of userId:", typeof entries[0].userId, "Constructor:", entries[0].userId.constructor.name);
+    // console.log("Type of _id:", typeof entries[0]._id, "Constructor:", entries[0]._id.constructor.name);
   }
   process.exit(0);
 }

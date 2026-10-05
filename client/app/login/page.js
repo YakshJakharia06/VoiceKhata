@@ -13,7 +13,7 @@ export default function LoginPage() {
 
       const result = await signInWithPopup(auth, provider);
 
-      console.log("USER:", result.user);
+      // console.log("USER:", result.user);
 
       alert(`Welcome ${result.user.displayName}`);
     } catch (error) {

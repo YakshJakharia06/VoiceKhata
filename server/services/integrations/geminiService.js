@@ -13,7 +13,7 @@
  * @returns {Promise<{ customerName: string|null, amount: number|null, type: "credit"|"payment" }>}
  */
 const parseWithGemini = async (text) => {
-  console.log(`[Gemini Integration] Invoking Gemini LLM fallback parser for: "${text}"`);
+  // console.log(`[Gemini Integration] Invoking Gemini LLM fallback parser for: "${text}"`);
   
   // Production fallback NLP extraction rules
   const lower = text.toLowerCase();

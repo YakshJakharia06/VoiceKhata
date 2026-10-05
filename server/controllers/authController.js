@@ -119,7 +119,7 @@ const verifyToken = async (req, res) => {
         { $setOnInsert: insertData },
         { upsert: true, new: true, setDefaultsOnInsert: true }
       );
-      console.log(`[Auth] New merchant created for UID: ${uid}`);
+      // console.log(`[Auth] New merchant created for UID: ${uid}`);
     }
 
     const token = signJwt(user);
@@ -165,7 +165,7 @@ const completeOnboarding = async (req, res) => {
     }
 
     await user.save();
-    console.log(`[Auth] Profile updated for merchant: ${user.name || user.shopName}`);
+    // console.log(`[Auth] Profile updated for merchant: ${user.name || user.shopName}`);
 
     return res.status(200).json({ success: true, data: { user: userPayload(user) } });
 

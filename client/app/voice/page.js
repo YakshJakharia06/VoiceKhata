@@ -153,7 +153,7 @@ export default function VoicePage() {
       };
       const resolved = speechLangMap[user.language] || "en-IN";
       setSpeechLang(resolved);
-      console.log(`[Voice Assistant] Auto-configured microphone recognition language: ${resolved}`);
+      // console.log(`[Voice Assistant] Auto-configured microphone recognition language: ${resolved}`);
     }
   }, [user]);
 

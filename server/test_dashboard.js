@@ -7,7 +7,7 @@ async function check() {
   
   try {
     const data = await getDashboardSummaryData("60b9b32b9b1d8e2df8a149f1");
-    console.log("Dashboard Data:", data);
+    // console.log("Dashboard Data:", data);
   } catch(e) {
     console.error("Error:", e);
   }

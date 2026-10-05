@@ -206,7 +206,7 @@ const buildEntriesForCustomer = (customerId, profile) => {
 const runSeed = async () => {
   const existing = await Customer.countDocuments();
   if (existing > 0) {
-    console.log(`[Seed] Skipped — ${existing} customer(s) already in DB`);
+    // console.log(`[Seed] Skipped — ${existing} customer(s) already in DB`);
     return false;
   }
 
@@ -253,14 +253,14 @@ const runSeed = async () => {
     await Customer.findByIdAndUpdate(customer._id, { totalOwed });
 
     totalEntries += savedIds.length;
-    console.log(
-      `[Seed] ✓ ${profile.name} (${profile.type}) — ` +
-      `${savedIds.length} entries, owed ₹${totalOwed}`
-    );
+    // console.log(
+    //   `[Seed] ✓ ${profile.name} (${profile.type}) — ` +
+    //   `${savedIds.length} entries, owed ₹${totalOwed}`
+    // );
   }
 
   console.log(
-    `[Seed] Done — ${CUSTOMER_PROFILES.length} customers, ${totalEntries} entries`
+    // `[Seed] Done — ${CUSTOMER_PROFILES.length} customers, ${totalEntries} entries`
   );
   return true;
 };
@@ -273,14 +273,14 @@ if (require.main === module) {
   (async () => {
     try {
       await mongoose.connect(appConfig.mongoUri, { serverSelectionTimeoutMS: 5000 });
-      console.log("[Seed] DB connected");
+      // console.log("[Seed] DB connected");
       await runSeed();
     } catch (err) {
       console.error("[Seed] Error:", err.message);
       process.exitCode = 1;
     } finally {
       await mongoose.disconnect();
-      console.log("[Seed] DB disconnected");
+      // console.log("[Seed] DB disconnected");
     }
   })();
 }

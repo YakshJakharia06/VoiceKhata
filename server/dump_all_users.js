@@ -12,9 +12,9 @@ async function dump() {
   users.forEach(u => console.log(u.phone, u._id));
 
   const allEntries = await Entry.find({}).populate('customerId');
-  console.log(`\nALL ENTRIES (Count: ${allEntries.length}):`);
+  // console.log(`\nALL ENTRIES (Count: ${allEntries.length}):`);
   allEntries.forEach(e => {
-    console.log(`- ID: ${e._id}, User: ${e.userId}, Type: ${e.type}, Amount: ${e.amount}, Status: ${e.status}, Customer: ${e.customerId?.name}`);
+    // console.log(`- ID: ${e._id}, User: ${e.userId}, Type: ${e.type}, Amount: ${e.amount}, Status: ${e.status}, Customer: ${e.customerId?.name}`);
   });
 
   process.exit(0);

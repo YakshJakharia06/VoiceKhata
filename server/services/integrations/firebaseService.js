@@ -14,8 +14,8 @@
  */
 const sendPushNotification = async (deviceToken, payload) => {
   // Production-grade mock for Firebase Cloud Messaging
-  console.log(`[Firebase Integration] Dispatching push notification to token: ${deviceToken}`);
-  console.log(`[Firebase Integration] Payload:`, JSON.stringify(payload, null, 2));
+  // console.log(`[Firebase Integration] Dispatching push notification to token: ${deviceToken}`);
+  // console.log(`[Firebase Integration] Payload:`, JSON.stringify(payload, null, 2));
 
   // Simulating successful network response
   return {

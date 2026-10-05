@@ -24,7 +24,7 @@ const fixUserIndexes = async () => {
 
       if (needsFix) {
         await collection.dropIndex(ix.name);
-        console.log(`[DB Migration] Dropped non-sparse ${ix.name} index — will be recreated as sparse.`);
+        // console.log(`[DB Migration] Dropped non-sparse ${ix.name} index — will be recreated as sparse.`);
       }
     }
 
@@ -76,7 +76,7 @@ const fixCustomerIndexes = async () => {
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI || process.env.MONGODB_URI);
-    console.log(`MongoDB connected: ${conn.connection.host}`);
+    // console.log(`MongoDB connected: ${conn.connection.host}`);
 
     // Run one-time index migrations after connect
     await fixUserIndexes();

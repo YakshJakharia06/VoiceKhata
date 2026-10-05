@@ -23,7 +23,7 @@ async function testScenario() {
   await selfHealCustomerBalances(person2._id);
 
   const data = await getDashboardSummaryData(userId.toString());
-  console.log("DASHBOARD DATA:", data);
+  // console.log("DASHBOARD DATA:", data);
 
   process.exit(0);
 }

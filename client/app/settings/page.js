@@ -132,7 +132,7 @@ export default function SettingsPage() {
           language: resolvedLanguage,
           businessType: user.businessType || "Kirana"
         });
-        console.log(`[Settings] Language updated successfully on backend to: ${resolvedLanguage}`);
+        // console.log(`[Settings] Language updated successfully on backend to: ${resolvedLanguage}`);
       } catch (err) {
         console.error("Failed to update language on backend:", err.message);
       }

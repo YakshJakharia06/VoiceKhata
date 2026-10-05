@@ -30,3 +30,4 @@ Thumbs.db
 
 # Firebase admin keys
 *firebase-adminsdk*.json
+server/config/firebase-credentials.json

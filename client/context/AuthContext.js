@@ -58,7 +58,7 @@ export function AuthProvider({ children }) {
           const response = await apiClient.getMe();
           if (response.success && response.data.user) {
             setUser(response.data.user);
-            console.log(`[Auth Provider] Session restored for merchant: ${response.data.user.shopName || "New User"}`);
+            // console.log(`[Auth Provider] Session restored for merchant: ${response.data.user.shopName || "New User"}`);
           } else {
             throw new Error("Invalid session profile");
           }
@@ -89,7 +89,7 @@ export function AuthProvider({ children }) {
       if (user.onboardingIncomplete) {
         console.log("[Auth Provider] User onboarding incomplete. Directing to setup.");
       } else {
-        console.log(`[Auth Provider] Authenticated merchant active. Redirecting "${pathname}" → "/dashboard".`);
+        // console.log(`[Auth Provider] Authenticated merchant active. Redirecting "${pathname}" → "/dashboard".`);
         window.location.href = "/dashboard";
       }
     }

@@ -231,7 +231,7 @@ export default function OnboardingPage() {
         throw new Error("No active confirmation session found. Please re-send the code.");
       }
 
-      console.log(`[Auth] Verifying 6-digit code: ${finalOtp}`);
+      // console.log(`[Auth] Verifying 6-digit code: ${finalOtp}`);
       const credential = await window.confirmationResult.confirm(finalOtp);
       
       console.log("[Auth] Firebase phone auth verification complete. Extracting token...");
